@@ -10,12 +10,19 @@ class OperationTextStyle {
     fontWeight: FontWeight.w500,
     //  color: AppColors.darkGreyColor,
   );
-  static TextStyle type = TextStyle(
+  static TextStyle income = const TextStyle(
     fontFamily: 'SF Pro Text',
     fontSize: 20.0,
     height: 24 / 20,
-    fontWeight: FontWeight.w800,
-    // color: AppColors.darkGreyColor,
+    fontWeight: FontWeight.w600,
+    color: AppColors.greenColor,
+  );
+  static TextStyle spendings = const TextStyle(
+    fontFamily: 'SF Pro Text',
+    fontSize: 20.0,
+    height: 24 / 20,
+    fontWeight: FontWeight.w600,
+    color: AppColors.redColor,
   );
   static TextStyle description = TextStyle(
     fontFamily: 'SF Pro Text',

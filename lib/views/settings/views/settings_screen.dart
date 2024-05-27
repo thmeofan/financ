@@ -30,7 +30,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        //   backgroundColor: AppColors.blackColor,
+        actions: [
+          Text(
+            'Settings',
+            style: SettingsTextStyle.title,
+          ),
+        ],
       ),
       body: Container(
         // color: AppColors.blackColor,
@@ -40,10 +45,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text(
-                  'Settings',
-                  style: SettingsTextStyle.title,
-                ),
                 SizedBox(
                   height: size.height * 0.01,
                 ),

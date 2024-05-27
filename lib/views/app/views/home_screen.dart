@@ -2,7 +2,7 @@ import 'package:financ/views/statistics_screen/views/statistics_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../consts/app_colors.dart';
-import '../../../data/model/news_model.dart';
+
 import '../../operation/views/finance_screen.dart';
 import '../../settings/views/settings_screen.dart';
 import '../../synopsys/views/synopsys_screen.dart';
@@ -37,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
               height: size.height * 0.032,
               color: currentIndex == 0
                   ? AppColors.purpleColor
-                  : AppColors.lightGreyColor,
+                  : AppColors.blackColor,
             ),
             label: 'home',
           ),
@@ -48,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
               height: size.height * 0.032,
               color: currentIndex == 1
                   ? AppColors.purpleColor
-                  : AppColors.lightGreyColor,
+                  : AppColors.blackColor,
             ),
             label: 'news',
           ),
@@ -59,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: size.height * 0.032,
                 color: currentIndex == 2
                     ? AppColors.purpleColor
-                    : AppColors.lightGreyColor,
+                    : AppColors.blackColor,
               ),
               label: 'game'),
         ],

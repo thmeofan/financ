@@ -1,3 +1,4 @@
+import 'package:financ/consts/app_text_styles/home_screen_text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
@@ -13,12 +14,27 @@ class ConstructorScreen extends StatefulWidget {
 }
 
 class _ConstructorScreenState extends State<ConstructorScreen> {
-  final _descriptionController = TextEditingController();
   final _amountController = TextEditingController();
-  final _dateController = TextEditingController();
-
+  final _nameController = TextEditingController();
   String _operationType = 'Income';
   List<bool> _isSelected = [true, false];
+  String _selectedCategory = '';
+  final List<Map<String, dynamic>> _incomeCategories = [
+    {'name': 'Salary', 'icon': 'assets/icons/salary.svg'},
+    {'name': 'Dividends', 'icon': 'assets/icons/dividends.svg'},
+    {'name': 'Investment', 'icon': 'assets/icons/investmentI.svg'},
+    {'name': 'Rent', 'icon': 'assets/icons/rent.svg'},
+    {'name': 'Freelance', 'icon': 'assets/icons/freelance.svg'},
+    {'name': 'Business', 'icon': 'assets/icons/business.svg'},
+  ];
+
+  final List<Map<String, dynamic>> _spendingCategories = [
+    {'name': 'Procurement', 'icon': 'assets/icons/procurement.svg'},
+    {'name': 'Food', 'icon': 'assets/icons/food.svg'},
+    {'name': 'Transport', 'icon': 'assets/icons/transport.svg'},
+    {'name': 'Rest', 'icon': 'assets/icons/rest.svg'},
+    {'name': 'Investment', 'icon': 'assets/icons/investmentE.svg'},
+  ];
 
   void _toggleOperationType(int index) {
     setState(() {
@@ -32,24 +48,30 @@ class _ConstructorScreenState extends State<ConstructorScreen> {
     });
   }
 
+  void _selectCategory(String category) {
+    setState(() {
+      _selectedCategory = category;
+    });
+  }
+
   void _saveOperation() {
     try {
-      final description = _descriptionController.text;
       final amount = double.tryParse(_amountController.text);
-      final date = _dateController.text;
 
-      if (description.isEmpty || amount == null || date.isEmpty) {
+      if (_selectedCategory.isEmpty ||
+          amount == null ||
+          _nameController.text.isEmpty) {
         _showErrorSnackBar('Make sure you filled all the fields');
         debugPrint(
-            'Validation failed: description, amount, or date is missing.');
+            'Validation failed: category, amount, or name of the operation is missing.');
         return;
       }
 
       final operation = {
-        'description': description,
+        'name': _nameController.text,
+        'description': _selectedCategory,
         'amount': amount,
         'type': _operationType,
-        'date': date,
       };
 
       Navigator.of(context).pop(operation);
@@ -71,48 +93,9 @@ class _ConstructorScreenState extends State<ConstructorScreen> {
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
-  void _pickDate() async {
-    final DateTime? picked = await showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2025),
-      builder: (context, child) {
-        return Theme(
-          data: ThemeData.light().copyWith(
-            colorScheme: const ColorScheme.dark(
-              primary: AppColors.blackColor,
-              onPrimary: AppColors.greenColor,
-              surface: AppColors.blackColor,
-              onSurface: Colors.white,
-            ),
-            textButtonTheme: TextButtonThemeData(
-              style: TextButton.styleFrom(
-                foregroundColor: Colors.white,
-              ),
-            ),
-            textTheme: TextTheme(
-              bodyMedium: TextStyle(
-                color: Colors.white,
-              ),
-            ),
-          ),
-          child: child!,
-        );
-      },
-    );
-    if (picked != null) {
-      setState(() {
-        _dateController.text = DateFormat('yyyy-MM-dd').format(picked);
-      });
-    }
-  }
-
   @override
   void dispose() {
-    _descriptionController.dispose();
     _amountController.dispose();
-    _dateController.dispose();
 
     super.dispose();
   }
@@ -122,27 +105,30 @@ class _ConstructorScreenState extends State<ConstructorScreen> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.blackColor,
         elevation: 0,
         titleSpacing: -5,
         title: const Text(
           'Back',
           style: SettingsTextStyle.back,
         ),
+        actions: [
+          Text(
+            'Add your info',
+            style: SettingsTextStyle.title,
+          ),
+        ],
         leading: IconButton(
           onPressed: () {
             Navigator.of(context).pop();
           },
           icon: SvgPicture.asset(
             'assets/icons/leading.svg',
-            width: size.width * 0.04,
-            height: size.width * 0.04,
-            // color: Colors.white,
+            width: size.width * 0.06,
+            height: size.width * 0.06,
           ),
         ),
       ),
       body: Container(
-        color: AppColors.blackColor,
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -152,55 +138,69 @@ class _ConstructorScreenState extends State<ConstructorScreen> {
                   isSelected: _isSelected,
                   onPressed: _toggleOperationType,
                   borderRadius: BorderRadius.circular(5.0),
-                  selectedColor: Colors.white,
-                  fillColor: Colors.white.withOpacity(0.25),
+                  selectedColor: AppColors.lightGreyColor,
+                  fillColor: AppColors.lightGreyColor,
                   renderBorder: false,
                   children: <Widget>[
                     Container(
                       padding: EdgeInsets.symmetric(
-                          horizontal: size.width * 0.13,
-                          vertical: size.height * 0.017),
+                          horizontal: size.width * 0.14,
+                          vertical: size.height * 0.012),
                       decoration: BoxDecoration(
-                        color: _isSelected[0]
-                            ? AppColors.whiteColor
-                            : AppColors.lightGreyColor,
-                        borderRadius: _isSelected[0]
-                            ? BorderRadius.only(
-                                topRight: Radius.circular(5.0),
-                                bottomRight: Radius.circular(5.0),
-                              )
-                            : BorderRadius.circular(0.0),
-                      ),
+                          color: _isSelected[0]
+                              ? AppColors.purpleColor
+                              : AppColors.lightGreyColor,
+                          borderRadius: _isSelected[0]
+                              ? BorderRadius.only(
+                                  topRight: Radius.circular(10.0),
+                                  bottomRight: Radius.circular(10.0),
+                                  topLeft: Radius.circular(10.0),
+                                  bottomLeft: Radius.circular(10.0),
+                                )
+                              : BorderRadius.only(
+                                  topRight: Radius.circular(0.0),
+                                  bottomRight: Radius.circular(0.0),
+                                  topLeft: Radius.circular(10.0),
+                                  bottomLeft: Radius.circular(10.0),
+                                )),
                       child: Text(
                         'Income',
                         style: TextStyle(
+                          fontWeight: FontWeight.w600,
                           color: _isSelected[0]
-                              ? Colors.black
-                              : Colors.white.withOpacity(0.35),
+                              ? Colors.white.withOpacity(0.35)
+                              : Colors.black,
                         ),
                       ),
                     ),
                     Container(
                       padding: EdgeInsets.symmetric(
-                          horizontal: size.width * 0.11,
-                          vertical: size.height * 0.017),
+                          horizontal: size.width * 0.125,
+                          vertical: size.height * 0.012),
                       decoration: BoxDecoration(
-                        color: _isSelected[1]
-                            ? AppColors.whiteColor
-                            : AppColors.lightGreyColor,
-                        borderRadius: _isSelected[1]
-                            ? BorderRadius.only(
-                                topLeft: Radius.circular(5.0),
-                                bottomLeft: Radius.circular(5.0),
-                              )
-                            : BorderRadius.circular(0.0),
-                      ),
+                          color: _isSelected[1]
+                              ? AppColors.purpleColor
+                              : AppColors.lightGreyColor,
+                          borderRadius: _isSelected[1]
+                              ? BorderRadius.only(
+                                  topLeft: Radius.circular(10.0),
+                                  bottomLeft: Radius.circular(10.0),
+                                  topRight: Radius.circular(10.0),
+                                  bottomRight: Radius.circular(10.0),
+                                )
+                              : BorderRadius.only(
+                                  topLeft: Radius.circular(0.0),
+                                  bottomLeft: Radius.circular(0.0),
+                                  topRight: Radius.circular(10.0),
+                                  bottomRight: Radius.circular(10.0),
+                                )),
                       child: Text(
                         'Spendings',
                         style: TextStyle(
+                          fontWeight: FontWeight.w600,
                           color: _isSelected[1]
-                              ? Colors.black
-                              : Colors.white.withOpacity(0.35),
+                              ? Colors.white.withOpacity(0.35)
+                              : Colors.black,
                         ),
                       ),
                     ),
@@ -208,50 +208,123 @@ class _ConstructorScreenState extends State<ConstructorScreen> {
                 ),
               ),
               SizedBox(
-                height: size.height * 0.03,
+                height: size.height * 0.01,
               ),
               Container(
                 height: size.height * 0.8,
-                //  color: AppColors.darkGreyColor,
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(4.0),
                   child: Column(
                     children: [
+                      InputWidget(
+                        controller: _nameController,
+                        label: 'Enter operation name',
+                      ),
+                      SizedBox(height: 5),
                       InputWidget(
                         controller: _amountController,
                         keyboardType:
                             TextInputType.numberWithOptions(decimal: true),
                         label: 'Enter amount',
                       ),
-                      // InputWidget(
-
-                      DropdownWidget(
-                        options: const [
-                          'Salary',
-                          'Freelance',
-                          'Investments',
-                          'Rental Income',
-                          'Side Jobs',
-                          'Bonuses and Awards',
-                          'Passive Income',
-                          'Social Benefits',
-                          'Sales',
-                          'Consulting and Training',
-                        ],
-                        onChanged: (String value) {
-                          _descriptionController.text = value;
-                        },
-                      ),
-                      GestureDetector(
-                        onTap: _pickDate,
-                        child: AbsorbPointer(
-                          child: InputWidget(
-                            controller: _dateController,
-                            label: 'Date',
-                          ),
+                      SizedBox(height: 5),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Wrap(
+                          spacing: 8.0,
+                          runSpacing: 2.0,
+                          children: _operationType == 'Income'
+                              ? _incomeCategories.map((category) {
+                                  return GestureDetector(
+                                    onTap: () =>
+                                        _selectCategory(category['name']),
+                                    child: Container(
+                                      padding: EdgeInsets.symmetric(
+                                        horizontal: size.width * 0.05,
+                                        vertical: size.height * 0.015,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: _selectedCategory ==
+                                                category['name']
+                                            ? AppColors.blueColor
+                                            : AppColors.lightGreyColor,
+                                        borderRadius:
+                                            BorderRadius.circular(10.0),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Row(
+                                          // mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            SvgPicture.asset(
+                                              category['icon'],
+                                              color: _selectedCategory ==
+                                                      category['name']
+                                                  ? Colors.white
+                                                  : AppColors.blackColor,
+                                              width: size.width * 0.06,
+                                              height: size.width * 0.06,
+                                            ),
+                                            SizedBox(width: size.width * 0.03),
+                                            Text(
+                                              category['name'],
+                                              style: TextStyle(
+                                                color: _selectedCategory ==
+                                                        category['name']
+                                                    ? Colors.white
+                                                    : AppColors.blackColor,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                }).toList()
+                              : _spendingCategories.map((category) {
+                                  return GestureDetector(
+                                    onTap: () =>
+                                        _selectCategory(category['name']),
+                                    child: Container(
+                                      padding: EdgeInsets.symmetric(
+                                        horizontal: size.width * 0.05,
+                                        vertical: size.height * 0.015,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: _selectedCategory ==
+                                                category['name']
+                                            ? AppColors.blueColor
+                                            : AppColors.lightGreyColor,
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Row(
+                                          children: [
+                                            SvgPicture.asset(
+                                              category['icon'],
+                                              color: _selectedCategory ==
+                                                      category['name']
+                                                  ? Colors.white
+                                                  : AppColors.blackColor,
+                                              width: size.width * 0.06,
+                                              height: size.width * 0.06,
+                                            ),
+                                            SizedBox(width: size.width * 0.03),
+                                            Text(category['name'],
+                                                style: HomeScreenTextStyle
+                                                    .bannerIncome),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                }).toList(),
                         ),
                       ),
-                      SizedBox(height: size.height * 0.03),
+                      SizedBox(height: size.height * 0.02),
                       ChosenActionButton(
                         text: 'Make an entry',
                         onTap: _saveOperation,

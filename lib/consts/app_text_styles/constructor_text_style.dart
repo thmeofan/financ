@@ -16,10 +16,10 @@ class ConstructorTextStyle {
   );
 
   static const TextStyle inputText = TextStyle(
-      fontFamily: 'Roboto',
-      fontSize: 16.0,
-      fontWeight: FontWeight.w300,
-      color: Colors.white);
+    fontFamily: 'Roboto',
+    fontSize: 16.0,
+    fontWeight: FontWeight.w300,
+  );
   static const TextStyle appBar = TextStyle(
       fontFamily: 'Roboto',
       fontSize: 16.0,

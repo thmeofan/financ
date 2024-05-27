@@ -6,19 +6,19 @@ class HomeScreenTextStyle {
     fontFamily: 'Roboto',
     fontSize: 20.0,
     fontWeight: FontWeight.w400,
-    color: AppColors.greenColor,
+    color: AppColors.blackColor,
   );
   static TextStyle bannerSpendings = TextStyle(
     fontFamily: 'Roboto',
     fontSize: 20.0,
     fontWeight: FontWeight.w400,
-    color: AppColors.whiteColor,
+    color: AppColors.blackColor,
   );
   static TextStyle bannerTitle = TextStyle(
     fontFamily: 'Roboto',
     fontSize: 16.0,
-    fontWeight: FontWeight.w400,
-    color: AppColors.whiteColor.withOpacity(0.5),
+    fontWeight: FontWeight.w200,
+    color: AppColors.blackColor.withOpacity(0.4),
   );
   static const TextStyle name = TextStyle(
       fontFamily: 'Roboto',
@@ -28,7 +28,7 @@ class HomeScreenTextStyle {
   static const TextStyle titleName = TextStyle(
       fontFamily: 'Roboto',
       fontSize: 16.0,
-      fontWeight: FontWeight.w300,
+      fontWeight: FontWeight.w500,
       color: AppColors.whiteColor);
   static TextStyle titleDate = TextStyle(
       fontFamily: 'Roboto',
