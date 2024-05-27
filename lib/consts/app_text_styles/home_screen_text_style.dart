@@ -50,22 +50,16 @@ class HomeScreenTextStyle {
       fontSize: 14.0,
       fontWeight: FontWeight.w400,
       color: AppColors.whiteColor);
-  static TextStyle score = const TextStyle(
-    fontFamily: 'Roboto',
-    fontSize: 16.0,
-    fontWeight: FontWeight.w300,
-    color: AppColors.peachColor,
-  );
   static TextStyle emptyTitle = const TextStyle(
     fontFamily: 'Roboto',
     fontSize: 18.0,
     fontWeight: FontWeight.w400,
-    color: AppColors.greenColor,
+    color: AppColors.purpleColor,
   );
   static TextStyle emptySubtitle = const TextStyle(
     fontFamily: 'Roboto',
     fontSize: 16.0,
     fontWeight: FontWeight.w200,
-    color: Colors.white,
+    color: Colors.grey,
   );
 }

@@ -1,12 +1,12 @@
 import 'package:financ/consts/app_text_styles/home_screen_text_style.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:intl/intl.dart';
+
 import '../../../consts/app_colors.dart';
 import '../../../consts/app_text_styles/settings_text_style.dart';
 import '../../app/widgets/chosen_action_button_widget.dart';
 import '../../app/widgets/input_widget.dart';
-import '../widgets/dropdown_widget.dart';
 
 class ConstructorScreen extends StatefulWidget {
   @override
@@ -210,28 +210,27 @@ class _ConstructorScreenState extends State<ConstructorScreen> {
               SizedBox(
                 height: size.height * 0.01,
               ),
-              Container(
-                height: size.height * 0.8,
-                child: Padding(
-                  padding: const EdgeInsets.all(4.0),
-                  child: Column(
-                    children: [
-                      InputWidget(
-                        controller: _nameController,
-                        label: 'Enter operation name',
-                      ),
-                      SizedBox(height: 5),
-                      InputWidget(
-                        controller: _amountController,
-                        keyboardType:
-                            TextInputType.numberWithOptions(decimal: true),
-                        label: 'Enter amount',
-                      ),
-                      SizedBox(height: 5),
-                      Padding(
+              Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: Column(
+                  children: [
+                    InputWidget(
+                      controller: _nameController,
+                      label: 'Enter operation name',
+                    ),
+                    SizedBox(height: 5),
+                    InputWidget(
+                      controller: _amountController,
+                      keyboardType:
+                          TextInputType.numberWithOptions(decimal: true),
+                      label: 'Enter amount',
+                    ),
+                    SizedBox(height: 5),
+                    SingleChildScrollView(
+                      child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Wrap(
-                          spacing: 8.0,
+                          spacing: 6.0,
                           runSpacing: 2.0,
                           children: _operationType == 'Income'
                               ? _incomeCategories.map((category) {
@@ -324,13 +323,13 @@ class _ConstructorScreenState extends State<ConstructorScreen> {
                                 }).toList(),
                         ),
                       ),
-                      SizedBox(height: size.height * 0.02),
-                      ChosenActionButton(
-                        text: 'Make an entry',
-                        onTap: _saveOperation,
-                      )
-                    ],
-                  ),
+                    ),
+                    SizedBox(height: size.height * 0.02),
+                    ChosenActionButton(
+                      text: 'Make an entry',
+                      onTap: _saveOperation,
+                    )
+                  ],
                 ),
               ),
             ],

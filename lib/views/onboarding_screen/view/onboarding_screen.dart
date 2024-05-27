@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../blocs/onboarding_cubit/onboarding_cubit.dart';
-import '../../../consts/app_colors.dart';
 import '../../../consts/app_text_styles/onboarding_text_style.dart';
 import '../../../util/app_routes.dart';
 import '../../app/widgets/chosen_action_button_widget.dart';
@@ -40,13 +39,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      //  extendBodyBehindAppBar: true,
       appBar: AppBar(
         elevation: 0,
-        //  backgroundColor: AppColors.blackColor,
       ),
       body: Container(
-        //   color: AppColors.blackColor,
         child: Column(
           children: [
             Expanded(

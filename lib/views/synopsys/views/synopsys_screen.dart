@@ -194,7 +194,7 @@ class _SynopsysScreenState extends State<SynopsysScreen> {
               children: [
                 Container(
                   width: size.width * 0.46,
-                  height: size.height * 0.15,
+                  height: size.height * 0.17,
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     color: AppColors.purpleColor.withOpacity(0.4),
@@ -242,7 +242,7 @@ class _SynopsysScreenState extends State<SynopsysScreen> {
                 SizedBox(width: 10),
                 Container(
                   width: size.width * 0.46,
-                  height: size.height * 0.15,
+                  height: size.height * 0.17,
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     color: AppColors.purpleColor.withOpacity(0.4),
@@ -347,44 +347,6 @@ class _SynopsysScreenState extends State<SynopsysScreen> {
             )
           ],
         ),
-      ),
-    );
-  }
-
-  Widget _buildCurrencyContainer(
-      String baseCurrency, String targetCurrency, double rate) {
-    return Container(
-      padding: EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        color: Colors.grey,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Column(
-        children: [
-          Text('1 $baseCurrency = $rate $targetCurrency'),
-          SizedBox(height: 10),
-          InkWell(
-            onTap: () {
-              showDialog(
-                context: context,
-                builder: (context) => AlertDialog(
-                  title: Text('Currency Conversion'),
-                  content:
-                      Text('1 $targetCurrency = ${1 / rate} $baseCurrency'),
-                  actions: [
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: Text('Close'),
-                    ),
-                  ],
-                ),
-              );
-            },
-            child: Icon(Icons.info, color: Colors.blue),
-          ),
-        ],
       ),
     );
   }

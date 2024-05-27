@@ -77,8 +77,20 @@ class _StatisticScreenState extends State<StatisticScreen> {
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    'Not enough info to show accurate info',
+                    style: HomeScreenTextStyle.emptyTitle,
+                  ),
+                  Text(
+                    'Put more info to get precise data',
+                    style: HomeScreenTextStyle.emptySubtitle,
+                  ),
+                ],
+              ),
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
@@ -164,10 +176,6 @@ class _StatisticScreenState extends State<StatisticScreen> {
                     padding: const EdgeInsets.all(8.0),
                     child: ToggleButtons(
                       borderRadius: BorderRadius.circular(10.0),
-                      // selectedColor:
-                      //     AppColors.darkGreyColor.withOpacity(0.06),
-                      // color: AppColors.darkGreyColor.withOpacity(0.06),
-                      // fillColor: AppColors.yellowColor,
                       onPressed: (int newIndex) {
                         setState(() {
                           selectedDuration = newIndex;
@@ -311,28 +319,6 @@ class _StatisticScreenState extends State<StatisticScreen> {
               ),
             ],
           ),
-        )
-        // : Column(
-        //     children: [
-        //       Padding(
-        //         padding:
-        //             EdgeInsets.symmetric(horizontal: size.height * 0.018),
-        //         child: const Row(
-        //           mainAxisAlignment: MainAxisAlignment.start,
-        //           children: [
-        //             Text(
-        //               'Statistics',
-        //               style: SettingsTextStyle.title,
-        //             ),
-        //           ],
-        //         ),
-        //       ),
-        //       SizedBox(
-        //         height: size.height * 0.27,
-        //       ),
-        //       Center(child: Text('No coffee shop info yet')),
-        //     ],
-        //   ),
-        );
+        ));
   }
 }

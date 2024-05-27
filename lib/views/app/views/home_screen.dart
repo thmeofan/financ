@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../consts/app_colors.dart';
 
-import '../../operation/views/finance_screen.dart';
 import '../../settings/views/settings_screen.dart';
 import '../../synopsys/views/synopsys_screen.dart';
 
@@ -20,7 +19,6 @@ class _HomeScreenState extends State<HomeScreen> {
     SynopsysScreen(),
     StatisticScreen(),
     SettingsScreen(),
-    // const ProfileScreen()
   ];
 
   @override
@@ -69,13 +67,11 @@ class _HomeScreenState extends State<HomeScreen> {
           });
         },
         type: BottomNavigationBarType.fixed,
-        //   backgroundColor: AppColors.blackColor,
         unselectedItemColor: AppColors.whiteColor,
         selectedItemColor: AppColors.orangeColor,
         showSelectedLabels: false,
         showUnselectedLabels: false,
-        selectedLabelStyle: const TextStyle(
-            // color: AppColors.lightBlueColor,
+        selectedLabelStyle: const TextStyle(// color: AppColors.lightBlueColor,
             ),
         unselectedLabelStyle: const TextStyle(
           color: AppColors.blackColor,

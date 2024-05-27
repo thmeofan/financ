@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import '../../../consts/app_colors.dart';
+
 import '../../../consts/app_text_styles/settings_text_style.dart';
 import '../../app/views/my_in_app_web_view.dart';
 import '../../app/widgets/chosen_action_button_widget.dart';
@@ -53,7 +53,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   child: Container(
                     width: size.width * 0.95,
                     decoration: BoxDecoration(
-                      // color: AppColors.lightGreyColor,
                       borderRadius: BorderRadius.circular(5.0),
                     ),
                     child: Container(
@@ -117,7 +116,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     );
                   },
                   action: SvgPicture.asset('assets/icons/arrow.svg'),
-                  // assetName: 'assets/icons/terms.svg'
                 ),
                 SizedBox(
                   height: size.height * 0.01,
@@ -134,7 +132,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     );
                   },
                   action: SvgPicture.asset('assets/icons/arrow.svg'),
-                  //  assetName: 'assets/icons/privacy.svg'
                 ),
                 SettingsTile(
                   text: 'Share App',
@@ -148,7 +145,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     );
                   },
                   action: SvgPicture.asset('assets/icons/arrow.svg'),
-                  //  assetName: 'assets/icons/support.svg'
                 ),
                 SizedBox(
                   height: size.height * 0.4,

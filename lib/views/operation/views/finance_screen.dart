@@ -1,12 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:intl/intl.dart';
+
 import '../../../consts/app_colors.dart';
 import '../../../consts/app_text_styles/home_screen_text_style.dart';
 import '../../../consts/app_text_styles/settings_text_style.dart';
-import '../../../util/shared_pref_service.dart';
-import 'constructor_screen.dart';
 
 class HistoryScreen extends StatefulWidget {
   final List<Map<String, dynamic>> operations;
@@ -279,7 +277,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                               height: size.height * 0.02,
                             ),
                             Text(
-                              'There\'s no info',
+                              'There\'s no info yet',
                               style: HomeScreenTextStyle.emptyTitle,
                             ),
                             SizedBox(
@@ -298,22 +296,6 @@ class _HistoryScreenState extends State<HistoryScreen> {
           ],
         ),
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   shape: const CircleBorder(),
-      //   backgroundColor: AppColors.greenColor,
-      //   child: const Icon(
-      //     Icons.add,
-      //   ),
-      //   onPressed: () async {
-      //     final result = await Navigator.push(
-      //       context,
-      //       MaterialPageRoute(builder: (context) => ConstructorScreen()),
-      //     );
-      //     if (result != null) {
-      //       _addOperation(result);
-      //     }
-      //   },
-      // ),
     );
   }
 }

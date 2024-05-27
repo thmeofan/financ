@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
+
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../consts/app_colors.dart';
@@ -25,7 +25,7 @@ class _CurrencyConverterState extends State<CurrencyConverter> {
 
     return Container(
       width: size.width * 0.95,
-      height: size.height * 0.15,
+      height: size.height * 0.18,
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: AppColors.blueColor,

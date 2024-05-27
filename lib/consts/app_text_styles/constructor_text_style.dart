@@ -32,10 +32,4 @@ class ConstructorTextStyle {
     fontWeight: FontWeight.w400,
     color: Colors.grey,
   );
-  static TextStyle snackBar = TextStyle(
-    fontFamily: 'Roboto',
-    fontSize: 14.0,
-    fontWeight: FontWeight.w400,
-    color: AppColors.peachColor,
-  );
 }
